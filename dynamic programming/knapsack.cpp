@@ -22,3 +22,19 @@ int knapsack(int *weight,int *values,int n,int maxWeight){
 
     return max(x,y); 
 }
+
+// dynamic programming : most optimized solution
+int knapsack_dp(int* weight, int* value, int n, int maxWeight) {
+    int dp[maxWeight+1];
+    memset(dp,0,sizeof(dp));
+    for(int i=0;i<n;i++)
+    {
+        for(int w=maxWeight;w>=0;w--)
+        {
+            if(weight[i]>w)
+                continue;
+            dp[w]=max(dp[w],dp[w-weight[i]]+value[i]);
+        }
+    }
+    return dp[maxWeight];
+}
