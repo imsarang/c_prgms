@@ -53,16 +53,10 @@ int main()
     print(edges,n,0,visited);
     
     // free memory
-    
-    for(int i = 0;i<n;i++){
-        visited[i] = NULL;
-    }
-    for(int i=0;i<n;i++){
-        for(int j = 0;j<n;j++){
-            edges[i][j] = NULL;
-        }
-    }
-    free(visited);
-    free(edges);
+      delete [] visited;
+      for(int i = 0;i<n;i++){
+        delete [] edges[i];
+      }
+      delete[] edges;
     return 0;
 }

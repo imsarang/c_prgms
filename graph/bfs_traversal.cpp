@@ -22,6 +22,7 @@ void print(int**edges,long long n,long long start,bool* visited){
         q.pop();
     }
     // cout << start << " ";
+    delete [] visited;
 }
 int main() {
     // Write your code here
@@ -48,28 +49,11 @@ int main() {
 
    
 
-    // free memory
-    // for(int i = 0;i<n;i++){
-    //     visited[i] = NULL;
-    // }
-    // for(int i = 0;i<n;i++){
-    //     for(int j = 0;j<n;j++){
-    //         edges[i][j] = NULL;
-    //     }
-    // }
-
-    // free(visited);
-       bool *visited = new bool[n];
-    for (long long i = 0; i < n; i++)
-    {
-        visited[i] = false;
-    }
-    for (long long i = 0; i < n; i++)
-    {
-        if (!visited[i])
-            print(edges, n, i,visited);
-    }
-    delete[] visited;
-    free(edges);
+  // free memory
+    //   delete [] visited;
+      for(int i = 0;i<n;i++){
+        delete [] edges[i];
+      }
+      delete[] edges;
     return 0;
 }
