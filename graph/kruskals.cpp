@@ -9,6 +9,8 @@ using namespace std;
 // pick n-1 edges(also performs cycle detection) : EV : union-find algo
 // total : E logE + EV
 // worst case : all the vertices have to be checked and all the edges have to be checked for cyclicity : EV (E = V sqaure (Worst Case))
+
+// using union-rank algo(union by rank method) : EV => E logV
 class edge{
     public:
         int src;
