@@ -3,6 +3,12 @@
 
 using namespace std;
 
+// E : number of edges , V : number of vertices
+// time complexity:
+// sorting : O(E logE)
+// pick n-1 edges(also performs cycle detection) : EV : union-find algo
+// total : E logE + EV
+// worst case : all the vertices have to be checked and all the edges have to be checked for cyclicity : EV (E = V sqaure (Worst Case))
 class edge{
     public:
         int src;
