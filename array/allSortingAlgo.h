@@ -1,5 +1,6 @@
 // for swapping
-void swapElements(int *x,int *y){
+void swapElements(int *x, int *y)
+{
     int temp = *x;
     *x = *y;
     *y = temp;
@@ -29,7 +30,7 @@ void selectionSort(int input[], int n)
         }
 
         // swapping of elements
-        swapElements(&input[i],&input[minIndex]);
+        swapElements(&input[i], &input[minIndex]);
     }
 }
 
@@ -38,7 +39,7 @@ void selectionSort(int input[], int n)
 // Time Complexity : O(n^2)
 // Space Complexity / Auxiliary Space: O(1)
 // In-place algo
-// used in computer graphics 
+// used in computer graphics
 // capable of detecting tiny errors
 
 void bubbleSort(int input[], int n)
@@ -49,9 +50,38 @@ void bubbleSort(int input[], int n)
         {
             if (input[j] > input[j + 1])
             {
-                swapElements(&input[j],&input[j+1]);
+                swapElements(&input[j], &input[j + 1]);
             }
         }
     }
 }
 
+// ****************************** INSERTION SORT ****************************//
+// elements of the unsorted part of the aray shifted to one end towards left
+// as the array gets sorted it is done from left to right
+// the left side of the mark will be sorted and right side unsorted
+
+// Time Complexity : O(n^2)
+// Space Complexity : O(1)
+// In-Place Algo
+// Used when number of elements is small
+// Useful when only few elements are not sorted i.e inly few elements are misplaced
+
+void insertionSort(int input[], int n)
+{
+    int i, j;
+    for (i = 1; i < n; i++)
+    {
+        int curr = input[i];
+        for (j = i - 1; j >= 0; j--)
+        {
+            if (curr < input[j])
+            {
+                input[j + 1] = input[j];
+            }
+            else
+                break;
+        }
+        input[j + 1] = curr;
+    }
+}
