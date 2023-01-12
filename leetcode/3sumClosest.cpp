@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// time complexity : O(n^2)
+// fix one pointer/index and move 2 indexes from first index to the last element if the array
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {
