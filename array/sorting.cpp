@@ -18,6 +18,7 @@ int main()
     {
         cin >> input[i];
     }
-    selectionSort(input, n);
+    // selectionSort(input, n);
+    bubbleSort(input,n);
     printArray(input,n);
 }
