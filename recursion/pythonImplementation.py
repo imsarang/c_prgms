@@ -62,8 +62,8 @@ def printSubsets(size):
         print(output[i])
 
 if __name__ == "__main__":
-    # size = subset(input,output)
-    size = keypad(23,output2)
+    size = subset(input,output)
+    # size = keypad(23,output2)
     printSubsets(size)
 
 
