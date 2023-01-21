@@ -199,6 +199,7 @@ int permutations(string input, string output[])
 // output array : 2D array
 // first element of each row = size of the subset
 // second element onwards => elements in the subset
+
 int getSubsetKHelper(int input[], int n, int startIndex, int output[][50], int k)
 {
 
@@ -220,16 +221,15 @@ int getSubsetKHelper(int input[], int n, int startIndex, int output[][50], int k
     
     // donot include the current first element of the input array
     int size1 = getSubsetKHelper(input, n, startIndex + 1, smallOutput1, k);
-    
     // include the current first element of the input array
-    int size2 = getSubsetKHelper(input, n, startIndex + 1, smallOutput2, k - input[0]);
+    int size2 = getSubsetKHelper(input, n, startIndex + 1, smallOutput2, k - input[startIndex]);
 
     int row = 0;
 
     // first take all the subsets without current first element of the input array
     for (int i = 0; i < size1; i++)
     {
-        for (int j = 0; j < smallOutput1[i][0]; i++)
+        for (int j = 0; j <= smallOutput1[i][0]; j++)
         {
             output[row][j] = smallOutput1[i][j];
         }
@@ -246,7 +246,7 @@ int getSubsetKHelper(int input[], int n, int startIndex, int output[][50], int k
         output[row][1] = input[startIndex];
 
         // copy all the elements from the smallOutput2 to the main output 2-D array from j=2
-        for (int j = 1; j < smallOutput2[i][0]; j++)
+        for (int j = 1; j <= smallOutput2[i][0]; j++)
         {
             output[row][j+1] = smallOutput2[i][j];
         }
@@ -258,4 +258,46 @@ int getSubsetKHelper(int input[], int n, int startIndex, int output[][50], int k
 int getSubsetsK(int input[], int n, int output[][50], int k)
 {
     return getSubsetKHelper(input, n, 0, output, k);
+}
+
+// Get all codes
+int atoi(char c){
+    return c-'0';
+}
+char itoa(int i){
+    return 'a'+i-1;
+}
+
+int getCodes(string input,string output[10000]){
+    
+    // Base Conditions
+    if(input.length()==0){
+        output[0] = " ";
+        return 1;
+    }
+
+    if(input.length()==1){
+        output[0] = atoi(itoa(input[0]));
+        return 1;
+    }
+
+    string output1[10000],output2[10000];
+    // Recursive Calls
+    int size1 = getCodes(input.substr(1),output1);
+    int size2=0;
+    if(input.size()>1){
+        int num = atoi(input[0]) * 10 + atoi(input[1]);
+        if( num>= 10 && num<=26){
+            size2 = getCodes(input.substr(2),output2);
+        }
+    }
+
+    int k = 0;
+    for(int i = 0;i<size1;i++){
+        output[k++] = itoa(atoi(input[0])) + output1[i];
+    }
+    for(int i = 0;i<size2;i++){
+        output[k++] = itoa(atoi(input[0]) * 10 + atoi(input[1])) + output2[i];
+    }
+    return k;
 }

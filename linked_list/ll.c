@@ -32,8 +32,7 @@ node *create_node(node *p,int ele)
 
 //extra methods :
 // void sort(start **p);
-void alt_delete(start **);
-
+void alt_delete(start **);  
 
 int main()
 {
