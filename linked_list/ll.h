@@ -86,9 +86,10 @@ Node *reverseKNodes(Node *head, int k)
     return head1;
 }
 
-// Bubble Sort
 int len(Node *head)
 {
+    if (head == NULL)
+        return 0;
     Node *ptr = head;
     int c = 0;
     while (ptr)
@@ -98,6 +99,8 @@ int len(Node *head)
     }
     return c;
 }
+
+// Bubble Sort
 Node *bubbleSort(Node *head)
 {
     if (head == NULL || head->next == NULL)
@@ -120,17 +123,87 @@ Node *bubbleSort(Node *head)
                     curr->next = t;
                     prev = prev->next;
                 }
-                else{
+                else
+                {
                     head = curr->next;
                     curr->next = head->next;
                     head->next = curr;
                     prev = head;
                 }
             }
-            else{
+            else
+            {
                 prev = curr;
                 curr = curr->next;
             }
+        }
+    }
+    return head;
+}
+
+Node *deleteNode(Node *head, int k)
+{
+    Node *ptr = head, *temp = NULL;
+    while (ptr != NULL && k > 0)
+    {
+        temp = ptr;
+        ptr = ptr->next;
+        k--;
+    }
+    temp->next = ptr->next;
+    ptr->next = NULL;
+    delete (ptr);
+    return head;
+}
+
+// Delete alternate nodes
+// using recursion
+Node *deleteAltNodes(Node *head, int k)
+{
+    if (head == NULL)
+        return NULL;
+
+    Node *prev = head;
+    Node *ptr = head->next;
+    while (ptr && prev)
+    {
+        prev->next = ptr->next;
+        free(ptr);
+        prev = prev->next;
+        if (prev)
+            ptr = prev->next;
+    }
+    return head;
+}
+
+Node *deleteKNode(Node *head, int k)
+{
+    if (head == NULL)
+        return NULL;
+    Node *ptr = head;
+    Node *prev = NULL;
+
+    int i = k;
+    while (ptr)
+    {
+        if (i == 1)
+        {
+            prev->next = ptr->next;
+            ptr->next = NULL;
+            delete (ptr);
+            if (prev->next)
+                ptr = prev->next;
+            else break;
+            i = k;
+        }
+        else
+        {
+            if (ptr->next)
+            {
+                prev = ptr;
+                ptr = ptr->next;
+                i--;
+            }else break;
         }
     }
     return head;

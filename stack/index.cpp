@@ -15,12 +15,12 @@ void print(Node *top)
 
 int main()
 {
-    // Stack *s = new Stack();
-    // s->push(10);
-    // s->push(20);
-    // s->push(30);
-    // s->push(50);
-    // print(s->top);
+    Stack *s = new Stack();
+    s->push(10);
+    s->push(20);
+    s->push(30);
+    s->push(50);
+    print(s->top);
 
     // Stack *b = new Stack();
     // cout<<checkBalanced("{{}}");
@@ -38,4 +38,5 @@ int main()
     // cout<<minBracketRev("{{{{{{}}");
 
     cout<<checkRedundantBrackets("()");
+    
 }

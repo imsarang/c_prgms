@@ -19,6 +19,11 @@ int main(){
     createLL(&head,50);
     createLL(&head,20);
     createLL(&head,10);
+    createLL(&head,70);
+    createLL(&head,60);
+    createLL(&head,80);
+    createLL(&head,55);
+    createLL(&head,90);
     cout<<"Original List : "<<endl;
     printLL(head);
 
@@ -31,8 +36,15 @@ int main(){
     // Node *headKRev = reverseKNodes(head,2);
     // printLL(headKRev);
 
-    Node *bubbleSortLL = bubbleSort(head);
-    printLL(bubbleSortLL);
+    // Node *bubbleSortLL = bubbleSort(head);
+    // printLL(bubbleSortLL);
+    
+    // cout<<len(head)<<endl;
+    // Node *del = deleteAltNodes(head,2);
+    // printLL(del);
 
+    Node *delK = deleteKNode(head,5);
+    // cout<<len(delK)<<endl;
+    printLL(delK);
     return 0;
 }
