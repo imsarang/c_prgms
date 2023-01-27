@@ -10,8 +10,7 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #include<unordered_map>
 #include<string>
 #include<vector>
-
-
+#include<cmath>
 
 using namespace std;
 
@@ -58,6 +57,92 @@ int pairSum(int *arr, int n) {
 	}
 	return count;
 }
+
+// number of pairs with differene equal to k
+int summation(int x){
+    if(x==0) return 0;
+    else return (x-1) + summation(x-1);
+}
+
+int pairWithDiffK(int *arr,int n,int k){
+    unordered_map <int,int> map;
+    for(int i = 0;i<n;i++){
+        map[arr[i]]++;
+    }
+
+    int count = 0;
+    for(int i = 0;i<n;i++){
+        if(arr[i] == k + arr[i]){
+            count += summation(map[arr[i]]);
+            map[arr[i]] = 0;
+        }
+        else if(arr[i] -k>=0 && map[arr[i]-k] > 0){
+            count += map[arr[i]] * map[arr[i]-k];
+            map[arr[i]] = 0;
+        }
+        else if(map[k+arr[i]]>0){
+            count+=map[arr[i]] *map[arr[i] + k];
+            map[arr[i]] = 0;
+        }
+    }
+    return count;
+}
+
+// length of longest subset with sum = 0
+int longestSubsetWithSum0(int *arr,int n){
+    int length = 0;
+    int sum = 0;
+    unordered_map <int,int> map;
+    for(int i = 0;i<n;i++){
+        sum +=arr[i];
+        if(arr[i] == 0 && length ==0) length = 1;
+        if(sum==0) length+=1;
+        if(map.count(sum) > 0){
+            length = max(length,i-map[sum]);
+        }
+        else map[sum] = i;
+    }
+    return length;
+}
+
+// return longest consecutive increasing seq
+vector<int> longestConsecutiveIncreasingSequence(int *arr, int n) {
+    // Your Code goes here
+    vector<int> ans;
+    unordered_map<int,int> a;
+    for(int i=0;i<n;i++)
+    {
+        a[arr[i]]=1;
+    }
+    int max=0;
+    int k=0;
+    
+    for(int i=0;i<n;i++)
+    {
+        int x=arr[i];
+        int j=0;
+        if(a.count(x-1)>0)
+            continue;
+        while(a.count(x)>0 )
+        {
+                
+            j++;
+            x++;
+        }
+        if(j>max)
+        {  
+            max=j;
+            k=arr[i];
+            //cout<<" j:"<<j<<" k:"<<k<<endl; 
+        }   
+    }
+    
+   
+    ans.push_back(k);
+    ans.push_back(k+max-1);
+    return ans;
+}
+
 
 int main()
 {
