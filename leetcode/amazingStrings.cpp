@@ -1,6 +1,8 @@
 #include<unordered_map>
 #include<string>
 
+using namespace std;
+
 string amazingStrings(string first, string second,string third) {
     // Write your code here.
     unordered_map<char,int>m;
